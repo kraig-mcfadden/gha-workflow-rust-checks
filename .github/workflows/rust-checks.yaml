@@ -54,3 +54,19 @@ jobs:
 
       - name: Formatting
         run: cargo fmt --check
+  change_risk:
+    name: Change Risk
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Change Risk Score
+        uses: kraigmcfadden/gha-actions-change-risk-score/change-risk-score-rs
+        with:
+          threshold: '30'
+          fail-above: 'true'
+          post-pr-comment: 'true'
