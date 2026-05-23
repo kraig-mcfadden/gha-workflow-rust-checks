@@ -2,6 +2,17 @@ name: Rust Checks
 
 on:
   workflow_call:
+    inputs:
+      change-risk-threshold:
+        description: 'CRAP score above which a function is flagged'
+        required: false
+        type: string
+        default: '30'
+      change-risk-fail-above:
+        description: 'Fail the change-risk job if any function exceeds the threshold'
+        required: false
+        type: string
+        default: 'false'
 
 env:
   CARGO_TERM_COLOR: always
@@ -67,6 +78,6 @@ jobs:
       - name: Change Risk Score
         uses: kraigmcfadden/gha-actions-change-risk-score/change-risk-score-rs
         with:
-          threshold: '30'
-          fail-above: 'true'
+          threshold: ${{ inputs.change-risk-threshold }}
+          fail-above: ${{ inputs.change-risk-fail-above }}
           post-pr-comment: 'true'
