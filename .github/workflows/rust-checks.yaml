@@ -76,7 +76,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Change Risk Score
-        uses: kraigmcfadden/gha-actions-change-risk-score/change-risk-score-rs@main
+        uses: kraig-mcfadden/gha-actions-change-risk-score/change-risk-score-rs@main
         with:
           threshold: ${{ inputs.change-risk-threshold }}
           fail-above: ${{ inputs.change-risk-fail-above }}
